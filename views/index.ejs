@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Golden Dice</title>
+    <meta charset="utf-8"/>
+    <script>
+        //js 정리하기. 랜덤만 페이지에 표시. 나머지것들은 분류하기
+        //global field는 참조된 다른 js 파일들에도 공유되는거 같다..!
+
+        //지금 당장 이상태로 서비스를 내야 한다고 생각해보자.
+        //디자인 까지는 아니더라도 유지보수. 필요없는거 없애고 코드 획일화
+        //손으로 html 계층 (큰) 구조 그려보기. 겹치는 이름 class로 묶기..
+
+        //random 페이지에서 데이터가 없으면 유효성 검사.. random 페이지 모든 유효성 검사
+            // 유효성 검사라는게 그냥 필요한 데이터 입력이 모두 안되었을때, 안되었다는 메세지와 함께
+            // 다음 페이지로 넘어가지 못하게 하면되겠지?
+            // 어떤 데이터가 입력되지 않는지도 보여주고 << input 왼쪽에 말풍선 느낌으로 표시.!! , 첫번째 데이터 focus까지 해주기!
+
+        var allData = new Array();
+        var filesData = new Array();
+        var additionalData = new Array();
+
+        var finalWinners = new Array();
+
+        function doGoldenDice() {
+            const numberOfwinners = [];
+            //입력한 등수별 인원 숫자 html element에서 가져와서 저장
+            $('#eventRankBox .eventRank input').each(function () {
+                numberOfwinners.push($(this).val());
+            });
+
+            let copiedAllData = allData.slice(); // 배열 복사
+            let winners = [];
+            for (let i = 0; i < numberOfwinners.length; i++) {
+                var tempArr = [];
+                for (let j = 0; j < numberOfwinners[i]; j++) {
+                    var randomIndex = getRandomInt(0, copiedAllData.length);
+                    tempArr.push(copiedAllData[randomIndex]);
+                    copiedAllData.splice(randomIndex, 1);
+                }
+                winners.push(tempArr);
+            }
+            //전역 데이터에 저장
+            finalWinners = winners;      
+
+            //show result to success page
+            showWinnersResult(winners);
+
+            //console 출력
+            for (let i = 0; i < winners.length; i++) {
+                console.log((i + 1) + "등: ");
+                for (let j = 0; j < winners[i].length; j++) {
+                    console.log(winners[i][j]);
+                }
+            }
+        }
+
+        function getRandomInt(min, max) {
+            //이 예제에서 Math.round()를 대신 사용하려고 할 수 있으나, 이렇게 하면 난수가 고르게 분포하지 않게 된다.
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            
+            return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+        }
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/index.js"></script>
+    <script type="text/javascript" src="javascripts/layout.js"></script>
+    <script type="text/javascript" src="javascripts/random.js"></script>
+    <script type="text/javascript" src="javascripts/question.js"></script>
+    <script type="text/javascript" src="javascripts/success.js"></script>
+    <script type="text/javascript" src="javascripts/result.js"></script>
+    <style></style>
+    <link rel="stylesheet" type="text/css" href="stylesheets/index.css"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/random.css"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/success.css"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/result.css"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/question.css"/>
+</head>
+<body>
+    <div id="container">
+
+        <div id="random">
+            <div id="question">
+                <div id="questionContainer">
+                    <div id="questionHeader">
+                        <h2 style="margin: 0;">이 데이터가 확실합니까?</h2>
+                    </div>
+                    <div id="questionContent">
+                        <div id="afBox">
+                            <div class="Qleft">
+                                <span class="QpropertyLarge">attached file(s) : </span>
+                            </div>
+                            <!-- <div class="Qright">
+                                <span class="Qvalue">example.csv</span>
+                                <span class="Qvalue">ab.csv</span>
+                                <span class="Qvalue">example.csv</span>
+                            </div> -->
+                            <ul class="Qright" style="list-style-type: circle;">
+
+                            </ul>
+                        </div>
+                        <div id="afcBox">
+                            <div class="Qleft"></div>
+                            <div class="Qright">
+                                <span class="QpropertySmall">data counts :</span>
+                                <span class="Qvalue QvalueSmall">0</span>
+                            </div>
+                        </div>
+                        <div id="adBox">
+                            <div id="adBox_left" class="Qleft">
+                                <span class="QpropertyLarge">additional data : </span>
+                            </div>
+                            <div class="Qright">
+                                <span class="QpropertySmall">data counts :</span>
+                                <span class="Qvalue QvalueSmall">0</span>
+                            </div>
+                        </div>
+                        <div id="tdcBox">
+                            <span class="QpropertyLarge">total data counts :</span>
+                            <span class="Qvalue QvalueLarge">0</span>
+                        </div>
+                    </div>
+                    <div id="questionBottom">
+                        <button id="QyesBtn" onclick="clickQyesBtn();">Yes</button>  
+                        <button id="QnoBtn" onclick="clickQnoBtn();">No</button>
+                    </div>
+
+                    <!-- <button id="randomExit" class="exit" onclick="clickQuestionExit()">X</button> -->
+                </div>       
+            </div>
+            <!-- inputHeader에 disabled 체크박스들은 그냥 ul 나열 하는 점 같은 아이콘으로 대체 하는 것 생각해 보기 -->
+            <!-- 뭔가 고정된 느낌을 덜 받는다. -->
+            <div id="randomContainer">
+                <form>
+                <input id="randomExit" class="exit" type="button" value="X" onclick="clickRandomExit();">
+
+                <div id="urlBox" class="Rbox">
+                    <div class="inputHeader">
+                        <input type="checkbox" id="urlCheckBox" name="hasUrl" value="true" onchange="urlCheckBoxOnchange(this.checked)" checked>
+                        <label for="urlCheckBox"> URL :</label>
+                    </div>
+                    <input id="url" type="text">
+                    <!-- ? 아이콘 버튼 만들어서 무엇을 입력해야 되는지 오른쪽에 설명, 주석다는 느낌 -->
+                </div> 
+                <div id="dataInputBox" class="Rbox">
+                    <div class="inputHeader">
+                        <input type="checkbox" id="dataInputCheckBox" name="hasDataInput" value="true" checked disabled>
+                        <label for="dataInputCheckBox"> Data :</label>
+                    </div>
+                    <div id="fileBox">
+                        <form action="/" method="post" enctype="multipart/form-data">
+                            <!-- <input id="uploadedFileName" value="파일선택" disabled> -->
+                            <div id="uploadedFileName">파일선택</div>
+                            <label for="fileInput">업로드</label> 
+                            <input type="file" id="fileInput" name="fileInput" onchange="readmultifiles(this.files)" accept=".csv, .txt, .json" multiple required>
+                            <span class="explanation">*extension : csv, txt, json</span>
+                        </form>
+                    </div>
+                    <textarea id="dataInput"></textarea>
+                    <!-- 총 중복 인원 오른쪽에 -->
+                    <!-- 중복 제거 버튼 -->
+                    <!-- total 오른쪽에 -->
+
+                    <!-- clear button -->
+                </div>
+                <div id="eventBox" class="Rbox">
+                    <!-- eventRank 3개씩 추가 시키는 버튼.  -->
+                    <!-- 여기서 버튼은 추가된 eventRank들의 맨 오른쪽에 오게 계속 밀려야 한다 -->
+                    <div class="inputHeader">
+                        <input type="checkbox" id="eventCheckBox" name="hasEvent" value="true" checked disabled>
+                        <label for="eventCheckBox"> Event :</label>
+                    </div>
+                    <div id="eventInfoBox">
+                        <div><span class="explanation" id="eventRankDetail">*rank : number of winners (only number)</span></div>
+                        <!-- input에 숫자만 오게 submit 시 유효성 검사! -->
+                        <form>
+                        <div id="eventRankBox">
+                            <input type="button" id="eventRankAddButton" value="+" onclick="addEventRanks()">
+                            <div>
+                                <span class="eventRank">1등 : <input type="number" required></span>
+                                <span class="eventRank">/ 2등 : <input type="number" required></span>
+                                <span class="eventRank">/ 3등 : <input type="number" required></span>
+                            </div>
+                            
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="detailBox" class="Rbox">
+                    <!-- <div class="inputHeader">
+                        <input type="checkbox" id="detailCheckBox" name="hasDetail" value="true" checked disabled>
+                        <label for="detailCheckBox"> Detail :</label>
+                    </div>
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        보안 가리개
+                    </ul> -->
+                </div>
+                <div id="submitBox">
+                    <input id="submit" type="submit" value="Roll the Golden Dice!" onclick="clickRandomSubmit();"> 
+                </div>
+                </form>
+            </div>
+            
+        </div>
+
+        <div id="success">
+            <div id="successContainer">
+                <h2>success</h2>
+                <!-- <div>
+                    <div id="successPurposeBox">
+                        <span>Purpose : </span><span class="results">website event</span>
+                    </div>
+                </div> -->
+                <div>
+                    <div id="successWinnersBox">
+                        <div><span>Winners :</span></div>
+                        <ul>
+                            <li>
+                                <p>1등</p>
+                                <textarea></textarea>
+                            </li>
+                            <li>
+                                <p>2등</p>
+                                <textarea></textarea>
+                            </li>
+                            <li>
+                                <p>3등</p>
+                                <textarea></textarea>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+                <div>
+                    <div id="successDiceCodeBox">
+                        <span class="Sproperty">Dice Code :</span>
+                        <span class="results Svalue">3d042949-95f8-4618-b6d1-1b4fd1697038</span>
+                        <button style="margin-left: 1px;">복사버튼</button>
+                    </div>    
+                </div>
+                <div>
+                    <div id="DCLtextBox">
+                        <span class="Sproperty">Dice Code &amp; Logo :</span>
+                    </div>
+                </div>
+                <div>
+                    <div id="copyLogoBox">
+                        <img id="copyLogo" src="images/copyLogo.png">
+                        <div>
+                            <span>Dice Code : </span>
+                            <span class="Svalue">3d042949-95f8-4618-b6d1-1b4fd1697038</span>
+                        </div>
+                        <button id="copyLogoButton">복사버튼</button>
+                    </div>
+                </div>
+                <div id="precaution">
+                    <span>※주의사항 : 이 페이지는 다시는 나오지 않습니다.</span>
+                </div>
+                <div>
+                    <!-- 반드시 로고를 복사 했어야 완벽하게 success와 DB 저장이 완료된다. -->
+                    <button id="successButton" onclick="clickSuccess();">success</button>
+                </div>
+
+            </div>
+            
+        </div>
+
+        <div id="result">
+            <div id="resultContainer">
+                <!-- 나열된 것들 왼쪽이나 오른쪽에 금색 체크 이미지 넣는 것 생각해보기, 뭔가 하나하나 확인 된것 같은 느낌! -->
+                <input class="exit" type="button" value="X" onclick="clickResultExit()">
+
+                <h1>Certification</h1>
+                <div id="resultDiceCodeBox">
+                    <span>Dice Code : </span>
+                    <span id="resultDiceCode" class="results"><b>AAAA - AAAA - AAAA</b></span>
+                </div>
+                <div id="resultUrlBox">
+                    <span>url : </span>
+                    <span id="resultUrl" class="results">https://www.GDproject.com/</span>
+                </div>
+                <div id="resultDataInputBox">
+                    <span>data : </span>
+                    <pre id="resultDataInput" class="results"></pre>
+                    <div id="resultDataInputSearchBox">
+                        <input>
+                        <button onclick="resultDataSearch()">search</button>
+                        <button onclick="resultDataClear()">clear</button>
+                        <!-- 새로고침 버튼이 clear 버튼으로 -->
+                        <div id="searchedDataCount"></div>
+                    </div>
+                    <div id="resultDataInputCountsBox">
+                        <!-- <span id="searchedDataCount">· searched data count: <span>#<span></span> -->
+                        <span id="allDataCount">· all data count: <span>#<span></span>
+                    </div>
+                </div>
+                <div id="resultDataOutputBox">
+                    <span>result : </span>
+                    <!-- <pre id="resultDataOutput" class="results">thdeorua12</pre> -->
+                    <ul>
+                        <li><span>1등</span>
+                            <div class="results">
+                                결과
+                            </div>
+                        </li>
+                        <li><span>2등</span>
+                            <div class="results">
+                                결과
+                            </div>
+                        </li>
+                        <li><span>3등</span>
+                            <div class="results">
+                                결과
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <img id="resultSignature" src="images/signature.jpg">
+            </div>
+            
+        </div>
+
+        <div id="main">
+            <div id="logoBox">
+                <!-- 로고의 z-index 최상위로 하면 클릭 안되는 문제 없앨 수 있다. -->
+                <!-- 밑에 글씨는 구글폰트로 할꺼다. 아니면 구분된 이미지 합쳐서 ㄴ -->
+                <!-- 로고를 토글로 바꾸는것: -->
+                <!-- 1. 처음에 누르면 랜덤 나오는것 2. 랜덤 작성중에 누르면 정말 나갈건인지 confirm하고 나오기 -->
+                <img id="logo" src="images/logo.png" onclick="clickLogo()">
+            </div>
+            <div id="searchBox">
+                <label>Dice code:</label>
+                <input id="searchBar" type="text">
+                <input id="searchButton" type="button" value="search" onclick="searchData();">
+                <!-- 제출 했을 시에는 홈페이지 리로드 -->
+            </div>
+            <div id="mottoBox">
+                <!-- 투명성, 확실성 -->
+                <!-- 오픈된 코드가 확신을 만든다 -->
+                <span id="motto">"더 이상 세상에 불확실한 랜덤은 없다."</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

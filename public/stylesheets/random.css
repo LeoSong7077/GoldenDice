@@ -1,0 +1,202 @@
+#random {
+    /* 컨테이너 + 박스 구조로 바꾸기? 그래야 margin처럼 효과 넣을 수 있다. */
+    position:absolute;
+
+    width:100vw;
+    height:180vh;
+
+    display:none;
+}
+
+#randomContainer {
+    position:relative;
+    top:18vw;
+    /* 스크롤이 있으면 스크롤 값만 큼 뺴주기 >> 없으면 안빼주기.. */
+    left:20%;
+    width:60%;
+    /* height:110vh; */
+
+    /* padding:3em; */
+    background-color:#3c3c3c;
+
+    display:flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: center;
+
+    color:white;
+}
+
+.Rbox {
+    margin-top: 2vw;
+    width:35vw;
+}
+
+input[type="checkbox"] {
+    width:1vw;
+    height:1vw;
+}
+
+.inputHeader {
+    margin-bottom: 0.5vw;
+    margin-left: -2vw;
+}
+
+.explanation {
+    color:#c8c8c8;
+    font-size: 1vw;
+    /* font-weight: lighter; */
+}
+
+.eventRank {
+    font-size: 1.5vw;
+    display:flex;
+    align-items: center;
+}
+
+#urlBox {
+    margin-top: 5vw;
+}
+
+#urlBox #url {
+    width:35vw;
+    height:1.7vw;
+}
+
+#dataInputBox {
+
+}
+
+#fileBox {
+    margin-bottom: 1vw;
+}
+
+#fileBox input[type="file"] { 
+    position: absolute; 
+    width: 1px;
+    height: 1px; 
+    padding: 0; 
+    margin: -1px; 
+    overflow: hidden; 
+    clip:rect(0,0,0,0); 
+    border: 0;
+} 
+#fileBox label { 
+    display: inline-block; 
+    padding: .5em .75em; 
+    color: white; 
+    font-size: inherit; 
+    line-height: normal; 
+    vertical-align: bottom; 
+    background-color: #0078FF; 
+    cursor: pointer; 
+    border: 1px solid #0078FF; 
+    /* border-bottom-color: #e2e2e2;  */
+    border-radius: .25em; 
+} 
+/* named upload */ 
+#fileBox #uploadedFileName { 
+    color:silver;
+    display: inline-block; 
+    padding: .5em .75em; /* label의 패딩값과 일치 */ 
+    font-size: inherit; 
+    font-family: inherit; 
+    line-height: normal; 
+    vertical-align: middle; 
+    background-color: #f5f5f5; 
+    border: 1px solid #ebebeb; 
+    border-bottom-color: #e2e2e2; 
+    border-radius: .25em; 
+    -webkit-appearance: none;  /* 네이티브 외형 감추기 */ 
+    -moz-appearance: none; 
+    appearance: none; 
+}
+
+#fileBox .explanation {
+    vertical-align: bottom;
+    margin-left: 1.5vw;
+}
+
+#dataInputBox #dataInput {
+    display:inline-block;
+    width:26vw;
+    height:30vh;
+
+    font-size: 1.5vw;
+}
+
+#eventBox {
+    /* border:0.5px solid yellow;
+    border-radius: 10px; */
+}
+
+#eventInfoBox {
+    /* background-color: yellow; */
+}
+
+#eventInfoBox .explanation {
+    display:inline-block;
+    margin-left: 0.8vw;
+    margin-bottom: 0.8vw;
+}
+
+#eventRankBox {
+    position:relative;
+}
+
+#eventRankBox div {
+    display:flex;
+    align-items: center;
+}
+
+#eventRankAddButton {
+    position:absolute;
+
+    display:block;
+
+
+    width:1.5vw;
+    height:1.5vw;
+
+    right:7vw;
+    bottom:0;
+}
+
+.eventRank input {
+    display:inline-block;
+    width:3vw;
+    height:1.5vw;
+    margin-left: 0.3vw;
+    margin-right: 0.6vw;
+    font-size: 1.2vw;
+    padding: 0.3vw;
+}
+
+#detailBox {
+
+}
+
+#randomExit {
+
+}
+
+#submitBox {
+    margin-top: 5vw;
+    margin-bottom: 1vw;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#submitBox #submit {
+    font-size: 1.5vw;
+    background-color: #FFDC3C;
+    padding:0.4vw 0.6vw;
+    border-radius: 10px;
+    cursor: pointer;
+}
+    #submit:hover {
+        background-color: #000000;
+    }
+

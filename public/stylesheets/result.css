@@ -1,0 +1,89 @@
+#result {
+    position:absolute;
+
+    width:100vw;
+    height:210vh;
+
+    display:none;
+}
+
+#resultContainer {
+    position:relative;
+    top:27em;
+    /* 스크롤이 있으면 스크롤 값만 큼 뺴주기 >> 없으면 안빼주기.. */
+    left:25vw;
+    width:50vw;
+    /* height:125vh; */
+
+    /* padding:1em; */
+    background-color:#3c3c3c;
+
+    display:flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: center;
+
+    color:white;
+}
+
+#resultContainer h1 {
+    color:#FFDC3C;
+    margin-top: 1.2em;
+    margin-bottom: 1.8em;
+}
+
+#resultContainer > div {
+    margin-bottom: 2em;
+    width:30vw;
+    /* border:1px solid white; */
+}
+
+#resultDiceCodeBox {
+
+}
+
+#resultDiceCodeBox #resultDiceCode {
+    
+}
+
+#resultDataInputBox {
+
+}
+
+#resultDataInputBox #resultDataInput {
+    height:15em;
+    border:1px solid black;
+}
+
+#resultSignature {
+    width:12em;
+    height:7em;
+
+    margin-bottom: 2em;
+}
+
+#resultDataInputSearchBox {
+    position:relative;
+
+    margin-top: -0.8em;
+
+    display: flex;
+    justify-content: flex-end;
+    width:30vw;
+
+}
+
+#searchedDataCount {
+    position:absolute;
+
+    margin-right: -3.5vw;
+
+    width:3vw;
+}
+
+#resultDataInputCountsBox {
+    margin-top: 1em;
+    display: flex;
+    justify-content: flex-end;
+    width:30vw;
+}

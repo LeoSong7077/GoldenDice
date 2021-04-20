@@ -1,0 +1,113 @@
+#success {
+    position:absolute;
+
+    width:100vw;
+    height:220vh;
+
+    display:none;
+}
+
+#successContainer {
+    position:relative;
+    top:18vw;
+
+    left:20%;
+    width:60%;
+    /* height:150vh; */
+
+    /* padding:2em; */
+    background-color:#3c3c3c;
+
+    display:flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: center;
+
+    color:white;
+}
+
+#successContainer > div {
+    /* default width:30vw */
+    width:40vw;
+    margin-bottom: 1.5vw;
+
+    display:flex;
+    justify-content: center;
+}
+
+#successContainer h2 {
+    font-size: 2.5vw;
+}
+
+#successWinnersBox {
+    width:30vw;
+    border-bottom: 1px solid yellow;
+}
+
+#successWinnersBox textarea {
+    display:block;
+    width:24vw;
+    height:6vw;
+    font-size: 1.5vw;
+}
+
+#DCLtextBox {
+    /* default width:26.2vw */
+    width:38.6vw;
+}
+
+#copyLogoBox {
+    /* flex:1; */
+    /* background-color: silver; */
+    position:relative;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding:1.5vw;
+
+    border:0.5px solid yellow;
+    border-radius:10px;
+}
+
+#copyLogo {
+    width:10vw;
+    height:10vw;
+}
+
+#copyLogoButton {
+    position:absolute;
+    right:-5vw;
+    bottom:0;
+}
+
+#precaution {
+    margin-top: 5vw;
+    font-size: 0.8vw;
+}
+
+#successButton {
+    margin-bottom: 0vw;
+    font-size: 1.5vw;
+    background-color: #FFDC3C;
+    padding:0.2vw 0.6vw;
+    border-radius: 10px;
+    cursor: pointer;
+}
+    #successButton:hover {
+        background-color: #FFEB5A;
+    }
+
+.Sproperty {
+    font-size: 1.2vw;
+}
+
+.Svalue {
+    font-weight: bolder;
+}
+
+#successDiceCodeBox .results {
+    font-size: 1.3vw;
+}

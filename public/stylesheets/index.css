@@ -1,0 +1,47 @@
+/* vw를 기본 단위로 하자. */
+html, body {
+    margin:0;
+    padding:0;
+    height:100%;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+span {
+    white-space:nowrap;
+}
+
+pre {
+    overflow: auto;
+    white-space: pre-wrap; /* pre tag내에 word wrap */
+}
+
+#container {
+    width:100vw;
+    height:100%;
+
+    /* overflow-x: hidden;
+    overflow-y: auto; */
+    overflow:hidden;
+}
+
+.exit {
+    position:absolute;
+    right:0;
+    top:0;
+    font-size: 1.5vw;
+    display:inline-block;
+    width:2.5vw;
+    height:2.3vw;
+}
+
+.results {
+    background-color: white;
+    color:black;
+    padding:0 5px;
+}
+
+.highlight {
+    color:red;
+}
