@@ -82,7 +82,7 @@ function resultDataClear() {
     $('#resultDataInputSearchBox input').val('');
 }
 
-function highlightText(word) {
+function highlightText(word) { // 인자로 타겟도 추가해서 당첨 이름 찾기도 ㄱ.
     //new RegExp :
     let count = 0;        
     var regex = new RegExp(word,'gi'); // ???
