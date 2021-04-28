@@ -18,8 +18,8 @@
   ```
   npm init
   
-  npm install express --save
-  npm install mongodb --save
+  npm install express
+  npm install mongodb
   npm install uuid
   ```
 * 환경
@@ -28,6 +28,7 @@
   ```
 * 실행  
   ```
+  명령프롬프트 실행
   cd [프로젝트 폴더 주소]
   npm start
   웹브라우저에서 http://localhost:3000/ 주소로 실행
