@@ -17,6 +17,7 @@ function exitRandomPage() {
 }
 
 function moveToQuestionPage() {
+    console.log("ok");
     const question = document.getElementById('question');
     question.style.display = 'block';
 }

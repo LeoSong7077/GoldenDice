@@ -50,6 +50,7 @@ function readmultifiles(files) {
         reader.readAsBinaryString(file);
     }
     readFile(0);
+
   }    
 
 //**using global variable
@@ -81,6 +82,8 @@ function fileToServer(fileType, data) {
             filesData = filesData.push(data);
             //console.log(data);
         }
+        console.log(allData);
+        console.log(filesData);
     })
 
     .fail(function (xhr, status, errorThrown){
