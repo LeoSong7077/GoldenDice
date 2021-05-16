@@ -16,8 +16,6 @@
   
 * 설치한 npm 패키지  
   ```
-  npm init
-  
   npm install express
   npm install mongodb
   npm install uuid
