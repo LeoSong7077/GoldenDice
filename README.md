@@ -35,6 +35,8 @@
 </br>
 
 ### :pushpin: 살펴보기  
+* 이미지
+![full_img](./readme_img/goldendice1.png)
 * 구조
 * 작동
 
