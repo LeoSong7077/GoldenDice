@@ -36,7 +36,14 @@
 
 ### :pushpin: 살펴보기  
 * 이미지
-![full_img](./readme_img/goldendice1.png)
+![full_img](./readme_img/1.png)
+![full_img](./readme_img/2.png)
+![full_img](./readme_img/3.png)
+![full_img](./readme_img/4.1.png)
+![full_img](./readme_img/4.2.png)
+![full_img](./readme_img/5.png)
+![full_img](./readme_img/6.1.png)
+![full_img](./readme_img/6.2.png)
 * 구조
 * 작동
 
